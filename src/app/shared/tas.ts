@@ -1,0 +1,32 @@
+export default {
+    "en-US": {
+        lblAddVehicalBrand: "Add New Vehical Company",
+        lblSelectVehicalCompany: "Select Vehical Company",
+        lblSelectVehicalType: "Select Vehical Type",
+        lblSelectTransmissionType: "Select Transmission Type",
+        lblVehicalName: "Enter Vehical Name",
+        lblVehicalId: "Vehical Id",
+        lblAdminSection: "Administrative",
+        lblUserId: "User Id",
+        lblFirstName: "First Name",
+        lblMiddleName: "Middle Name",
+        lblLastName: "Last Name",
+        lblContactNumber: "Contact Number",
+        lblAddNewCustomer: "Add New Customer",
+        lblvehicalNumber: "Enter vehical number",
+        lblLastGenralCheckUpDate: "Enter last genral checkup date",
+        lblLastServiceDate: "Enter last service checkup date",
+        lblNoOfPunctureRepair: "Enter No of puncture repaired",
+        lblTotalUsers: "Total User",
+        lblBookApointment: "Book Apointment Date",
+        lblBookingTime: "Select Time",
+        lblCustomer: "Customer",
+        lblFullName: "Full Name",
+        lblVehical: "Vehical",
+        lblServiceDate: "Service Date",
+        lblLastCheckUp: "Last Check Up",
+        lblAction: "Action",
+        msgPatternError: "Please enter valid characters",
+        msgRequiredField: "This is required field"
+    }
+}

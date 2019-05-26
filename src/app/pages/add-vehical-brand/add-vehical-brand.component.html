@@ -1,0 +1,64 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">{{ 'lblAddVehicalBrand' | l10n }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="AddVehicalBrandForm" (ngSubmit)="AddVehicalCompany()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{
+                                        'has-danger': AddVehicalBrandForm.get('companyName').invalid && AddVehicalBrandForm.get('companyName').touched
+                                    }">
+                                    <input type="text"
+                                        formControlName="companyName"
+                                        class="form-control form-control-alternative"
+                                        placeholder="Enter Company Name"
+                                        [ngClass]="{'is-invalid': AddVehicalBrandForm.get('companyName').invalid}">
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddVehicalBrandForm.get('companyName').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group"
+                                    [ngClass]="{
+                                        'has-danger': AddVehicalBrandForm.get('id').invalid && AddVehicalBrandForm.get('id').touched
+                                    }">
+                                    <input type="text" formControlName="id" placeholder="Enter Company Id"
+                                        class="form-control form-control-alternative" disabled>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddVehicalBrandForm.get('id').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <button type="submit"
+                                class="btn btn-success"
+                                [disabled]="AddVehicalBrandForm.invalid"
+                            >Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

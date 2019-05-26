@@ -1,0 +1,98 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="mb-0">{{ 'lblCustomer' | l10n}}</h3>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12">
+                <div class="col text-right">
+                    <form class="form-inline">
+                      <div class="form-group">
+                        <div class="input-group input-group-alternative">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" (click)="dp.toggle()"><i class="ni ni-calendar-grid-58 text-success"></i></span>
+                          </div>
+                          <input type="text" class="form-control" bsDatepicker name="SearchDate" [(ngModel)]="SearchDate" placeholder="Booking Date" #dp="bsDatepicker">
+                          <div class="input-group-append" *ngIf="!IsCustomerShownByBookingDate && SearchDate">
+                            <span class="input-group-text" (click)="SearchCustomerByDate()"> <i class="ni ni-spaceship text-red"></i></span>
+                          </div>
+                          <div class="input-group-append" *ngIf="IsCustomerShownByBookingDate">
+                              <span class="input-group-text" (click)="ShoowAllCustomer()"> <i class="ni ni-fat-remove text-red"></i></span>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <!-- Projects table -->
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">{{ 'lblFullName' | l10n}}</th>
+              <th scope="col">{{ 'lblVehical' | l10n}}</th>
+              <th scope="col">{{ 'lblLastCheckUp' | l10n}}</th>
+              <th scope="col">{{ 'lblServiceDate' | l10n}}</th>
+              <th scope="col">{{ 'lblContactNumber' | l10n}}</th>
+              <th scope="col">{{ 'lblAction' | l10n}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of AllCustomerList">
+              <th scope="row">
+                {{ customer.firstName }} {{ customer.lastName }}
+              </th>
+              <td>
+                <i *ngIf="!customer.vehical" class="ni ni-fat-delete"></i>
+                <span *ngIf="customer.vehical">
+                  {{ customer.vehical }}
+                  <i class="fa fa-barcode text-success mr-3"></i>
+                  {{ customer.vehicalNumber }}
+                </span>
+              </td>
+              <td>
+                <i *ngIf="!customer.lastGenralCheckUpDate" class="ni ni-fat-delete"></i>
+                <span *ngIf="customer.lastGenralCheckUpDate">
+                  {{ customer.lastGenralCheckUpDate }}
+                </span>
+              </td>
+              <td>
+                <i *ngIf="!customer.lastServiceDate" class="ni ni-fat-delete"></i>
+                <span *ngIf="customer.lastServiceDate">
+                  {{ customer.lastServiceDate }}
+                </span>
+              </td>
+              <td>
+                <i *ngIf="!customer.contactNo" class="ni ni-fat-delete"></i>
+                <span *ngIf="customer.contactNo">
+                  <i class="fa fa-phone text-success mr-3"></i>
+                  {{ customer.contactNo }}
+                </span>
+              </td>
+              <td>
+                <a href="#!" class="btn btn-sm btn-danger">
+                  <i class="ni ni-ruler-pencil"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

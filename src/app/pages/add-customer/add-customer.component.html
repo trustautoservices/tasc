@@ -1,0 +1,261 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card card-stats mb-4 mb-xl-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">{{ 'lblTotalUsers' | l10n}}</h5>
+                        <span class="h2 font-weight-bold mb-0">{{ UserId}}</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">{{ 'lblAddNewCustomer' | l10n }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="AddUserForm" (ngSubmit)="AddUser()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <label for="userId">{{ 'lblUserId' | l10n }}</label>
+                                    <div class="form-group">
+                                        <input
+                                            formControlName="userId"
+                                            class="form-control form-control-alternative"
+                                            id="userId"
+                                            disabled> 
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="firstName">{{ 'lblFirstName' | l10n }}</label>
+                                <div class="form-group"
+                                    [ngClass]="{
+                                        'has-danger': AddUserForm.get('firstName').invalid && AddUserForm.get('firstName').touched
+                                    }">
+                                    <input type="text"
+                                        formControlName="firstName"
+                                        class="form-control form-control-alternative"
+                                        [ngClass]="{'is-invalid': AddUserForm.get('firstName').invalid}"
+                                        id="firstName"/>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('firstName').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="middleName">{{ 'lblMiddleName' | l10n }}</label>
+                                <div class="form-group"
+                                [ngClass]="{
+                                    'has-danger': AddUserForm.get('middleName').invalid && AddUserForm.get('middleName').touched
+                                }">
+                                    <input type="text"
+                                        formControlName="middleName"
+                                        class="form-control form-control-alternative"
+                                        [ngClass]="{'is-invalid': AddUserForm.get('middleName').invalid}"
+                                        id="middleName"/>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('middleName').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="lastName">{{ 'lblLastName' | l10n }}</label>
+                                <div class="form-group"
+                                    [ngClass]="{
+                                        'has-danger': AddUserForm.get('lastName').invalid && AddUserForm.get('lastName').touched
+                                    }">
+                                    <input type="text"
+                                        formControlName="lastName"
+                                        class="form-control form-control-alternative"
+                                        [ngClass]="{'is-invalid': AddUserForm.get('lastName').invalid}"
+                                        id="lastName"/>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('lastName').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="contactNo">{{ 'lblContactNumber' | l10n }}</label>
+                                <div class="form-group"
+                                [ngClass]="{
+                                    'has-danger': AddUserForm.get('contactNo').invalid && AddUserForm.get('contactNo').touched
+                                }">
+                                    <input type="text"
+                                        formControlName="contactNo"
+                                        class="form-control form-control-alternative"
+                                        [ngClass]="{'is-invalid': AddUserForm.get('contactNo').invalid}"
+                                        id="contactNo"/>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('contactNo').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="vehicalCompany">{{ 'lblSelectVehicalCompany' | l10n }}</label>
+                                    <select
+                                        formControlName="vehicalCompany"
+                                        class="form-control form-control-alternative"
+                                        id="vehicalCompany">
+                                        <option *ngFor="let vehicalBrand of VehicalBrandList" [value]="vehicalBrand.id">
+                                            {{vehicalBrand.companyName}}
+                                        </option>
+                                    </select>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('vehicalCompany').invalid  && AddUserForm.get('vehicalCompany').touched">
+                                        <span class="alert-inner--text">{{ 'msgRequiredField' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="vehical">{{ 'lblVehicalName' | l10n }}</label>
+                                    <select
+                                        formControlName="vehical"
+                                        class="form-control form-control-alternative"
+                                        id="vehical">
+                                        <option *ngFor="let vehical of VehicalForCompany" [value]="vehical.vehicalName">
+                                            {{vehical.vehicalName}}
+                                        </option>
+                                    </select>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('vehical').invalid && AddUserForm.get('vehical').touched">
+                                        <span class="alert-inner--text">{{ 'msgRequiredField' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <label for="vehicalNumber">{{ 'lblvehicalNumber' | l10n }}</label>
+                                    <div class="form-group"
+                                        [ngClass]="{
+                                            'has-danger': AddUserForm.get('vehicalNumber').invalid && AddUserForm.get('vehicalNumber').touched
+                                        }">
+                                        <input type="text"
+                                            app-upper-case
+                                            formControlName="vehicalNumber"
+                                            class="form-control form-control-alternative"
+                                            [ngClass]="{'is-invalid': AddUserForm.get('vehicalNumber').invalid}"
+                                            id="firstName"/>
+                                        <br>
+                                        <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('vehicalNumber').errors?.pattern">
+                                            <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="vehicalNumber">{{ 'lblLastGenralCheckUpDate' | l10n }}</label>
+                                <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input type="text" formControlName="lastGenralCheckUpDate" class="form-control" bsDatepicker>
+                                        </div>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('lastGenralCheckUpDate').invalid && AddUserForm.get('lastGenralCheckUpDate').touched">
+                                        <span class="alert-inner--text">{{ 'msgRequiredField' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="vehicalNumber">{{ 'lblLastServiceDate' | l10n }}</label>
+                                <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input type="text" formControlName="lastServiceDate" placeholder="Datepicker" class="form-control" bsDatepicker>
+                                        </div>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('lastServiceDate').invalid && AddUserForm.get('lastServiceDate').touched">
+                                        <span class="alert-inner--text">{{ 'msgRequiredField' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="vehicalNumber">{{ 'lblNoOfPunctureRepair' | l10n }}</label>
+                                <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <input type="text" formControlName="noOfPunctureRepair" class="form-control">
+                                        </div>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('noOfPunctureRepair').errors?.pattern">
+                                        <span class="alert-inner--text">{{ 'msgPatternError' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="vehicalNumber">{{ 'lblBookApointment' | l10n }}</label>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input type="text" formControlName="apointmentDate" class="form-control" bsDatepicker [minDate]="TodaysDate">
+                                        </div>
+                                    <br>
+                                    <div class="alert alert-warning" role="alert" *ngIf="AddUserForm.get('apointmentDate').invalid && AddUserForm.get('apointmentDate').touched">
+                                        <span class="alert-inner--text">{{ 'msgRequiredField' | l10n }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="vehicalNumber">{{ 'lblBookingTime' | l10n }}</label>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <timepicker formControlName="bookingTime" [min]="StartTime" [max]="EndTime"></timepicker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <button type="submit"
+                                class="btn btn-success"
+                                [disabled]="AddUserForm.invalid">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

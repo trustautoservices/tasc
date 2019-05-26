@@ -1,0 +1,102 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0">{{ 'lblAddVehicalBrand' | l10n }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="AddVehicalForm" (ngSubmit)="AddVehical()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="vehicalId">{{ 'lblVehicalId' | l10n }}</label>
+                                        <input
+                                            formControlName="vehicalId"
+                                            class="form-control form-control-alternative"
+                                            id="vehicalId"
+                                            disabled>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="vehicalCompany">{{ 'lblSelectVehicalCompany' | l10n }}</label>
+                                    <select
+                                        formControlName="vehicalBrandId"
+                                        class="form-control form-control-alternative"
+                                        id="vehicalCompany">
+                                        <option *ngFor="let vehicalBrand of VehicalBrandList" [value]="vehicalBrand.id">
+                                            {{vehicalBrand.companyName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="vehicalType">{{ 'lblSelectVehicalType' | l10n }}</label>
+                                    <select
+                                        formControlName="vehicalTypeId"
+                                        class="form-control form-control-alternative"
+                                        id="vehicalType">
+                                        <option *ngFor="let vehicalType of VehicalTypeList" [value]="vehicalType.id">
+                                            {{vehicalType.type}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="transmissionType">{{ 'lblSelectTransmissionType' | l10n }}</label>
+                                    <select
+                                        formControlName="transmissionTypeId"
+                                        class="form-control form-control-alternative"
+                                        id="vehicalTransmission">
+                                        <option *ngFor="let vehicalTransmission of VehicaTransmissionList" [value]="vehicalTransmission.id">
+                                            {{vehicalTransmission.type}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group"
+                                    [ngClass]="{
+                                        'has-danger': AddVehicalForm.get('vehicalName').invalid && AddVehicalForm.get('vehicalName').touched
+                                    }">
+                                    <label for="vehicalName">{{ 'lblVehicalName' | l10n }}</label>
+                                    <input
+                                        type="text"
+                                        formControlName="vehicalName"
+                                        class="form-control form-control-alternative"
+                                        [ngClass]="{'is-invalid': AddVehicalForm.get('vehicalName').invalid}"
+                                        id="vehicalName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col text-right">
+                            <button type="submit"
+                                class="btn btn-success"
+                                [disabled]="AddVehicalForm.invalid"
+                            >Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
